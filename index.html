@@ -1171,7 +1171,7 @@
         <h2 class="section-title">Let's Talk About Your Business</h2>
         <p class="section-subtitle">Free 30-minute consultation to discuss your needs—no technical jargon, just straight talk about how AI can help</p>
         <div class="contact-container">
-            <form id="contactForm">
+            <form action="https://formspree.io/f/xqayqjoj" method="POST" id="contactForm">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name *</label>
@@ -1288,25 +1288,6 @@
             });
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                size: document.getElementById('size').value,
-                challenge: document.getElementById('challenge').value,
-                message: document.getElementById('message').value
-            };
-            
-            alert(`Thank you, ${formData.firstName}! We'll email you at ${formData.email} within 24 hours to schedule your free consultation.`);
-            this.reset();
-        });
-
         // White paper downloads
         document.querySelectorAll('.download-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -1336,5 +1317,6 @@
     </script>
 </body>
 </html>
+
 
 

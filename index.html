@@ -1,1323 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARAI Consulting - AI Business Intelligence & Automation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- UPDATED SECTIONS TO REPLACE IN YOUR CURRENT index.html -->
 
-        :root {
-            --primary: #0a0e27;      /* Deep tech blue-black */
-            --secondary: #4a69bd;    /* Premium blue */
-            --accent: #00d2ff;       /* Electric cyan */
-            --gradient1: #667eea;    /* Purple-blue */
-            --gradient2: #764ba2;    /* Deep purple */
-            --dark: #050714;         /* Near black */
-            --gray: #8892b0;         /* Tech gray */
-            --light-gray: #ccd6f6;   /* Light tech gray */
-            --white: #ffffff;
-            --bg-light: #f8f9fc;     /* Premium light background */
-            --success: #10b981;      /* Success green */
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--primary);
-            overflow-x: hidden;
-            background: var(--white);
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 1px 20px rgba(0,0,0,0.08);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--secondary), var(--gradient1));
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(74, 105, 189, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(74, 105, 189, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, var(--dark) 0%, #0a1628 100%);
-            position: relative;
-            overflow: hidden;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 210, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a69bd' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            animation: drift 20s linear infinite;
-        }
-
-        @keyframes drift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-50%, -50%); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--accent);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--gradient1) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--light-gray);
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            animation: fadeInUp 1s ease-out;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--secondary), var(--gradient1));
-            color: white;
-            padding: 1.1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 1.1rem 2.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* Who We Serve Section */
-        .who-we-serve {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .serve-grid {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .serve-card {
-            padding: 2.5rem;
-            border-radius: 16px;
-            background: var(--bg-light);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-
-        .serve-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .serve-card h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .serve-card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .serve-features {
-            list-style: none;
-        }
-
-        .serve-features li {
-            padding: 0.8rem 0;
-            color: var(--primary);
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .serve-features li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: bold;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: var(--bg-light);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.15rem;
-            color: var(--gray);
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--gradient1));
-            transform: translateX(-100%);
-            transition: transform 0.4s;
-        }
-
-        .service-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--secondary), var(--gradient1));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
-            color: white;
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .service-features li {
-            padding: 0.6rem 0;
-            color: var(--gray);
-            padding-left: 1.8rem;
-            position: relative;
-            font-size: 0.9rem;
-        }
-
-        .service-features li:before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .pricing-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: white;
-            border: 2px solid rgba(0,0,0,0.08);
-            border-radius: 16px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--secondary);
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(74, 105, 189, 0.2);
-        }
-
-        .pricing-card.featured .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--secondary);
-            color: white;
-            padding: 0.3rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .pricing-tier {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-period {
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            padding: 0.8rem 0;
-            color: var(--gray);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .pricing-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--secondary), var(--gradient1));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pricing-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(74, 105, 189, 0.3);
-        }
-
-        /* White Papers Section */
-        .resources {
-            padding: 6rem 2rem;
-            background: var(--bg-light);
-        }
-
-        .resources-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .paper-card {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .paper-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-
-        .paper-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .paper-type {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.9;
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        .paper-title {
-            font-size: 1.3rem;
-            margin-top: 0.8rem;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .paper-content {
-            padding: 2rem;
-            background: white;
-        }
-
-        .paper-excerpt {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .paper-stats {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--secondary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .download-btn:hover {
-            color: var(--primary);
-            gap: 0.8rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--accent), white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            color: rgba(255,255,255,0.9);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 3.5rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.6rem;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--gradient1));
-            color: white;
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1.5rem;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .footer-section p,
-        .footer-section ul {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            padding: 0.4rem 0;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .serve-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">ARAI</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="cta-button">Free Consultation</a>
-        </div>
-    </nav>
+<!-- 1. REPLACE YOUR HERO SECTION (lines 460-480) with this: -->
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-badge">AI Solutions That Scale With You</div>
-            <h1>Make AI Work for <span class="gradient-text">Your Business</span></h1>
-            <p>Whether you're a growing startup or established company, we deliver practical AI solutions that reduce costs, save time, and drive real results—without the complexity.</p>
+            <div class="hero-badge">All-in-One AI Solution for Small Business</div>
+            <h1>Transform Your Business with <span class="gradient-text">Complete AI Automation</span></h1>
+            <p>Stop juggling multiple tools and consultants. Get everything you need to automate your marketing, build your company with AI, and grow your business—all in one powerful solution designed for small businesses.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Start Your AI Journey</a>
+                <a href="#contact" class="btn-primary">Get Your All-in-One Solution</a>
                 <a href="#pricing" class="btn-secondary">View Pricing</a>
             </div>
         </div>
     </section>
 
-    <!-- Who We Serve Section -->
-    <section class="who-we-serve">
-        <h2 class="section-title">Solutions for Every Business Size</h2>
-        <p class="section-subtitle">From solo entrepreneurs to corporate teams, we have the right AI solution for you</p>
-        <div class="serve-grid">
-            <div class="serve-card">
-                <h3>Small Businesses & Startups</h3>
-                <p>Get enterprise-level AI capabilities without enterprise costs. Perfect for teams of 1-50.</p>
-                <ul class="serve-features">
-                    <li>Start with just $299/month</li>
-                    <li>No technical expertise required</li>
-                    <li>Implementation in days, not months</li>
-                    <li>Scale as you grow</li>
-                    <li>Direct access to AI experts</li>
+<!-- 2. REPLACE YOUR ENTIRE SERVICES SECTION (lines 640-860) with this: -->
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Everything You Need in One Solution</h2>
+        <p class="section-subtitle">Three powerful services that work together to transform your small business</p>
+        <div class="services-grid">
+            
+            <!-- Marketing Automation -->
+            <div class="service-card">
+                <div class="service-icon">MA</div>
+                <h3>Marketing Automation</h3>
+                <p>Complete marketing transformation that runs on autopilot. We set up everything so you can focus on your business while your marketing works 24/7.</p>
+                <ul class="service-features">
+                    <li>Email campaigns & lead nurturing</li>
+                    <li>Social media automation</li>
+                    <li>Customer follow-up sequences</li>
+                    <li>Sales funnel optimization</li>
+                    <li>Review request automation</li>
+                    <li>ROI tracking & analytics</li>
                 </ul>
             </div>
-            <div class="serve-card">
-                <h3>Growing Companies & Enterprises</h3>
-                <p>Comprehensive AI transformation for established organizations ready to lead their industry.</p>
-                <ul class="serve-features">
-                    <li>Custom AI strategies</li>
-                    <li>Team training programs</li>
-                    <li>Enterprise integrations</li>
-                    <li>Dedicated support team</li>
-                    <li>ROI-focused implementation</li>
+
+            <!-- Build Your Company with AI -->
+            <div class="service-card">
+                <div class="service-icon">AI</div>
+                <h3>Build Your Company with AI</h3>
+                <p>Use AI to build and scale your business operations from the ground up. Perfect for entrepreneurs who want to compete with bigger companies.</p>
+                <ul class="service-features">
+                    <li>AI-powered business planning</li>
+                    <li>Customer service chatbots</li>
+                    <li>Document & contract automation</li>
+                    <li>Operations management AI</li>
+                    <li>Financial reporting automation</li>
+                    <li>HR & recruitment assistance</li>
+                </ul>
+            </div>
+
+            <!-- Consulting Service -->
+            <div class="service-card">
+                <div class="service-icon">CS</div>
+                <h3>1-on-1 AI Consulting</h3>
+                <p>Get personalized guidance from AI experts who understand small business. We work directly with you to implement solutions that fit your specific needs.</p>
+                <ul class="service-features">
+                    <li>Weekly strategy sessions</li>
+                    <li>Custom AI roadmap</li>
+                    <li>Hands-on team training</li>
+                    <li>Technology selection help</li>
+                    <li>Implementation support</li>
+                    <li>Ongoing optimization</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <h2 class="section-title">Practical AI Solutions That Deliver Results</h2>
-        <p class="section-subtitle">Clear, actionable services designed to solve real business problems—no buzzwords, just results</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">AI</div>
-                <h3>AI Strategy & Consulting</h3>
-                <p>Get personalized guidance on how to use AI in your specific business. We'll identify opportunities and create a clear roadmap.</p>
-                <ul class="service-features">
-                    <li>2-hour discovery session</li>
-                    <li>Custom AI opportunity audit</li>
-                    <li>90-day implementation plan</li>
-                    <li>Monthly progress reviews</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">MA</div>
-                <h3>Marketing Automation</h3>
-                <p>Stop wasting time on repetitive marketing tasks. Automate your email, social media, and customer outreach.</p>
-                <ul class="service-features">
-                    <li>Email campaign automation</li>
-                    <li>Social media scheduling</li>
-                    <li>Lead scoring & nurturing</li>
-                    <li>Customer journey mapping</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">BA</div>
-                <h3>Business Process Automation</h3>
-                <p>Eliminate manual work and human error. Automate invoicing, data entry, reporting, and more.</p>
-                <ul class="service-features">
-                    <li>Workflow automation</li>
-                    <li>Document processing</li>
-                    <li>Automated reporting</li>
-                    <li>Task management systems</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">CS</div>
-                <h3>Customer Service AI</h3>
-                <p>Provide 24/7 customer support without hiring more staff. Smart chatbots and automated responses that actually help.</p>
-                <ul class="service-features">
-                    <li>AI chatbot setup</li>
-                    <li>FAQ automation</li>
-                    <li>Ticket routing</li>
-                    <li>Response templates</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">DA</div>
-                <h3>Data Analytics & Insights</h3>
-                <p>Turn your data into decisions. Get clear dashboards and reports that show exactly what's working.</p>
-                <ul class="service-features">
-                    <li>Custom dashboards</li>
-                    <li>Sales forecasting</li>
-                    <li>Customer insights</li>
-                    <li>Performance tracking</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">TR</div>
-                <h3>Team Training</h3>
-                <p>Get your team up to speed with practical AI training. No tech degree required.</p>
-                <ul class="service-features">
-                    <li>Hands-on workshops</li>
-                    <li>Tool-specific training</li>
-                    <li>Best practices guide</li>
-                    <li>Ongoing support</li>
-                </ul>
+<!-- 3. ADD THIS NEW SECTION RIGHT AFTER SERVICES (before Pricing): -->
+
+    <!-- All-in-One Solution Highlight -->
+    <section class="all-in-one" style="padding: 5rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); position: relative; overflow: hidden;">
+        <div style="position: absolute; width: 100%; height: 100%; opacity: 0.1; background: radial-gradient(circle at 30% 50%, var(--accent) 0%, transparent 50%), radial-gradient(circle at 70% 50%, var(--gradient1) 0%, transparent 50%);"></div>
+        
+        <div style="max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;">
+            <h2 class="section-title" style="color: white; margin-bottom: 1.5rem;">The Complete All-in-One Package</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto 3rem;">
+                Why hire three different companies when you can get everything in one comprehensive solution?
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                    <div style="text-align: center;">
+                        <div class="stat-number" style="font-size: 3rem;">$899</div>
+                        <p style="color: white; font-size: 1.1rem; font-family: 'Inter', sans-serif;">Everything included per month</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="stat-number" style="font-size: 3rem;">60%</div>
+                        <p style="color: white; font-size: 1.1rem; font-family: 'Inter', sans-serif;">Savings vs. separate services</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="stat-number" style="font-size: 3rem;">30</div>
+                        <p style="color: white; font-size: 1.1rem; font-family: 'Inter', sans-serif;">Days to see real results</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="#contact" class="btn-primary" style="background: white; color: var(--primary); padding: 1.2rem 3rem; font-size: 1.1rem;">
+                        Start Your All-in-One Transformation →
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
+<!-- 4. REPLACE YOUR PRICING SECTION (lines 1000-1100) with this simpler version: -->
 
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <h2 class="section-title">Simple, Transparent Pricing</h2>
-        <p class="section-subtitle">Choose the plan that fits your business—upgrade or downgrade anytime</p>
+        <p class="section-subtitle">Choose the solution that fits your business</p>
         <div class="pricing-grid">
             <div class="pricing-card">
-                <div class="pricing-tier">Starter</div>
-                <div class="pricing-price">$299</div>
-                <div class="pricing-period">per month</div>
+                <div class="pricing-tier">Individual Service</div>
+                <div class="pricing-price">$399</div>
+                <div class="pricing-period">per service/month</div>
                 <ul class="pricing-features">
-                    <li>Perfect for small businesses</li>
-                    <li>1 AI implementation</li>
-                    <li>Monthly strategy call</li>
+                    <li>Choose any single service</li>
+                    <li>Marketing OR AI Build OR Consulting</li>
+                    <li>Basic support included</li>
+                    <li>Monthly progress reports</li>
                     <li>Email support</li>
-                    <li>Basic analytics dashboard</li>
-                    <li>Training resources</li>
+                    <li>Great for testing the waters</li>
                 </ul>
                 <button class="pricing-btn">Get Started</button>
             </div>
             <div class="pricing-card featured">
-                <div class="pricing-badge">Most Popular</div>
-                <div class="pricing-tier">Growth</div>
+                <div class="pricing-badge">Best Value - Save 40%</div>
+                <div class="pricing-tier">All-in-One Package</div>
                 <div class="pricing-price">$899</div>
-                <div class="pricing-period">per month</div>
+                <div class="pricing-period">everything included</div>
                 <ul class="pricing-features">
-                    <li>For growing businesses</li>
-                    <li>3 AI implementations</li>
-                    <li>Weekly strategy calls</li>
-                    <li>Priority support</li>
-                    <li>Advanced analytics</li>
-                    <li>Team training (up to 10)</li>
-                    <li>Custom integrations</li>
+                    <li>✓ Complete Marketing Automation</li>
+                    <li>✓ AI Business Building Tools</li>
+                    <li>✓ Weekly 1-on-1 Consulting</li>
+                    <li>✓ Priority support 24/7</li>
+                    <li>✓ All future updates included</li>
+                    <li>✓ Team training for up to 10</li>
+                    <li>✓ 30-day money-back guarantee</li>
                 </ul>
-                <button class="pricing-btn">Get Started</button>
+                <button class="pricing-btn">Get All-in-One Solution</button>
             </div>
             <div class="pricing-card">
                 <div class="pricing-tier">Enterprise</div>
                 <div class="pricing-price">Custom</div>
-                <div class="pricing-period">tailored to your needs</div>
+                <div class="pricing-period">for larger teams</div>
                 <ul class="pricing-features">
-                    <li>For larger organizations</li>
-                    <li>Unlimited implementations</li>
-                    <li>Dedicated AI consultant</li>
-                    <li>24/7 support</li>
-                    <li>Custom development</li>
-                    <li>Company-wide training</li>
-                    <li>SLA guarantee</li>
+                    <li>Everything in All-in-One</li>
+                    <li>Unlimited team members</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom integrations</li>
+                    <li>SLA guarantees</li>
+                    <li>White-label options</li>
                 </ul>
                 <button class="pricing-btn">Contact Sales</button>
             </div>
         </div>
     </section>
 
-    <!-- White Papers Section -->
-    <section class="resources" id="resources">
-        <h2 class="section-title">Free Resources to Get Started</h2>
-        <p class="section-subtitle">Practical guides and tools to help you understand how AI can transform your business</p>
-        <div class="resources-grid">
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">Beginner's Guide</div>
-                    <div class="paper-title">AI for Small Business: Where to Start</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">A practical, jargon-free guide to implementing your first AI solution. Includes cost breakdowns and real examples.</p>
-                    <div class="paper-stats">
-                        <span>15 pages</span>
-                        <span>5 case studies</span>
-                    </div>
-                    <a href="#" class="download-btn">Download Free Guide →</a>
-                </div>
-            </div>
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">ROI Calculator</div>
-                    <div class="paper-title">Calculate Your AI Savings</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">Interactive spreadsheet to calculate exactly how much time and money AI automation can save your business.</p>
-                    <div class="paper-stats">
-                        <span>Excel template</span>
-                        <span>Industry benchmarks</span>
-                    </div>
-                    <a href="#" class="download-btn">Get Calculator →</a>
-                </div>
-            </div>
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">Implementation Guide</div>
-                    <div class="paper-title">30-Day AI Quick Start</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">Step-by-step plan to implement your first AI solution in 30 days. Includes timelines, budgets, and success metrics.</p>
-                    <div class="paper-stats">
-                        <span>25 pages</span>
-                        <span>Checklists included</span>
-                    </div>
-                    <a href="#" class="download-btn">Download Guide →</a>
-                </div>
-            </div>
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">Industry Report</div>
-                    <div class="paper-title">AI Success Stories: Real Businesses, Real Results</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">See how businesses like yours increased revenue and cut costs with AI. Includes implementation details and lessons learned.</p>
-                    <div class="paper-stats">
-                        <span>20 pages</span>
-                        <span>10 businesses featured</span>
-                    </div>
-                    <a href="#" class="download-btn">Read Stories →</a>
-                </div>
-            </div>
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">Tool Comparison</div>
-                    <div class="paper-title">2025 AI Tools Guide for Business</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">Compare the top AI tools for business with pricing, features, and recommendations based on company size.</p>
-                    <div class="paper-stats">
-                        <span>30 pages</span>
-                        <span>50+ tools reviewed</span>
-                    </div>
-                    <a href="#" class="download-btn">View Comparison →</a>
-                </div>
-            </div>
-            <div class="paper-card">
-                <div class="paper-header">
-                    <div class="paper-type">Training Guide</div>
-                    <div class="paper-title">Get Your Team Ready for AI</div>
-                </div>
-                <div class="paper-content">
-                    <p class="paper-excerpt">How to prepare your team for AI adoption, overcome resistance, and ensure successful implementation.</p>
-                    <div class="paper-stats">
-                        <span>18 pages</span>
-                        <span>Training templates</span>
-                    </div>
-                    <a href="#" class="download-btn">Get Training Guide →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- 5. UPDATE THE CONTACT FORM dropdown (around line 2760) - replace the select element: -->
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-box">
-                <div class="stat-number">250+</div>
-                <div class="stat-label">Businesses Transformed</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">20hrs</div>
-                <div class="stat-label">Average Weekly Time Saved</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">40%</div>
-                <div class="stat-label">Average Cost Reduction</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">30days</div>
-                <div class="stat-label">To First Results</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2 class="section-title">Let's Talk About Your Business</h2>
-        <p class="section-subtitle">Free 30-minute consultation to discuss your needs—no technical jargon, just straight talk about how AI can help</p>
-        <div class="contact-container">
-            <form action="https://formspree.io/f/xqayqjoj" method="POST" id="contactForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name *</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name *</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="size">Company Size *</label>
-                        <select id="size" name="size" required>
-                            <option value="">Select size</option>
-                            <option value="1-5">1-5 employees</option>
-                            <option value="6-20">6-20 employees</option>
-                            <option value="21-50">21-50 employees</option>
-                            <option value="51-200">51-200 employees</option>
-                            <option value="200+">200+ employees</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group full-width">
                     <label for="challenge">What's your biggest business challenge right now? *</label>
                     <select id="challenge" name="challenge" required>
                         <option value="">Select your main challenge</option>
-                        <option value="time">Spending too much time on repetitive tasks</option>
+                        <option value="all-in-one">I want the complete all-in-one solution</option>
                         <option value="marketing">Need to improve marketing & sales</option>
-                        <option value="customer">Want better customer service</option>
-                        <option value="data">Not using data effectively</option>
+                        <option value="operations">Want to automate business operations</option>
+                        <option value="scaling">Ready to scale with AI</option>
+                        <option value="time">Spending too much time on repetitive tasks</option>
                         <option value="costs">Need to reduce operational costs</option>
-                        <option value="scale">Ready to scale but need systems</option>
+                        <option value="consulting">Need expert AI guidance</option>
                         <option value="other">Other (please describe below)</option>
                     </select>
                 </div>
-                <div class="form-group full-width">
-                    <label for="message">Anything else we should know?</label>
-                    <textarea id="message" name="message" placeholder="Tell us more about your business and what you'd like to achieve..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Get Your Free Consultation</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>ARAI Consulting</h4>
-                <p>Making AI accessible and profitable for businesses of all sizes. No complexity, no confusion—just results.</p>
-                <p style="margin-top: 1rem; color: var(--accent);">
-                    AI Solutions That Actually Work
-                </p>
-            </div>
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#services">AI Strategy</a></li>
-                    <li><a href="#services">Marketing Automation</a></li>
-                    <li><a href="#services">Process Automation</a></li>
-                    <li><a href="#services">Team Training</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#resources">Free Guides</a></li>
-                    <li><a href="#resources">ROI Calculator</a></li>
-                    <li><a href="#resources">Case Studies</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <ul>
-                    <li>info@araiconsult.com</li>
-                    <li>Mon-Fri: 9AM - 6PM CST</li>
-                    <li>Little Rock, AR</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 ARAI Consulting. All rights reserved. | Privacy Policy | Terms of Service</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // White paper downloads
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const paperTitle = this.closest('.paper-card').querySelector('.paper-title').textContent;
-                alert(`Your download of "${paperTitle}" is starting. Check your downloads folder.`);
-            });
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .paper-card, .stat-box, .pricing-card, .serve-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
-</body>
-</html>
-
-
-
-
